@@ -1,0 +1,7 @@
+gradio
+torch>=2.0.0
+faster-whisper
+deep-translator
+pydub
+ffmpeg-python
+coqui-tts

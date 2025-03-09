@@ -1,0 +1,22 @@
+services:
+  video-translator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '7860:7860'
+    volumes:
+      - ./input:/app/input
+      - ./output:/tmp/output
+      - ./uploads:/tmp/uploads
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: python3 -u main.py
